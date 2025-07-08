@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My dad's birthday</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background: #0d0d0d;
+  text-align: center;
+  padding: 1em;
+}
+#message {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  font-size: 2rem;
+  line-height: 1.4;
+  max-width: 90vw;
+  color: #ffffff;
+  text-shadow: 0 1px 8px cyan;
+  font-family: fantasy;
+  font-weight: 500;
+  font-size: 45px;
+}
+#message.visible {
+  opacity: 1;
+}
+@media (max-width: 576px) {
+  #message {
+    font-size: 28px;
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="message"></div>
+  <script>
+    const phrases = [
+  "Привет! Это займёт всего лишь 1,5-2 минуты",
+  "Дочитай до конца",
+  "Привет пап..",
+  "Хочу поздравить тебя с твоим 53 днём рождения",
+  "Хочу поблагодарить тебя за всё что ты сделал для нас",
+  "Верил, волновался, поддерживал в трудное время..",
+  "Обеспечил нас, устроил все нужные условия для хорошей жизни",
+  "Немного слов о моих достижениях, которые я бы не получил без твоей помощи..",
+  "2 года назад я начал изучать IT",
+  "Я сейчас я владею 4 языками программирования..",
+  "На твой 51 день рождения я делал точно такое же поздравление",
+  "Но я писал сам, ведь не знал как сделать это автоматическим..",
+  "А сейчас благоларя твоей поддержке и вере в меня",
+  "Я могу сделать любой сайт или программу",
+  "На этот день рождения я опять не смог подарить что то хорошее",
+  "Но я обещаю что на следующий раз, я тебя обрадую",
+  "Я продолжу свою карьеру и достигну успеха.",
+  "Это я могу пообещать...",
+  "С днём рождения папа!",
+  "Долгих лет и счастья тебе :)",
+  "Конец..."
+];
+
+const messageEl = document.getElementById("message");
+const totalPerPhrase = 7000;
+const fadeTime = 1000;
+const visibleTime = totalPerPhrase - fadeTime * 2;
+let offset = 0;
+
+phrases.forEach((text, index) => {
+  setTimeout(() => {
+    messageEl.textContent = text;
+    messageEl.classList.add("visible");
+  }, offset);
+  setTimeout(() => {
+    messageEl.classList.remove("visible");
+  }, offset + fadeTime + visibleTime);
+
+  offset += totalPerPhrase;
+});
+setTimeout(() => {
+  messageEl.textContent = "";
+}, offset);
+  </script>
+</body>
+</html>
